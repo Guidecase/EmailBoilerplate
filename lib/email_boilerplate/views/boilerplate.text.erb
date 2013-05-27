@@ -1,0 +1,3 @@
+<%= content_for?(:title) ? "##{content_for(:title)}" : nil %>
+
+<%= content_for?(:body) ? yield(:body) : yield %>
