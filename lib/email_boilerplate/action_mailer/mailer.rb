@@ -15,14 +15,23 @@ module ActionMailer
       end
 
       def mail(locale, opts)
-        ActionMailer::Base.default_url_options[:locale] = locale
+        append_rails_view_path 'app/views/mailers'
+        set_default_url_locale locale
 
         I18n.with_locale(locale) do   
           super opts
         end
       end
 
-      private    
+      private
+
+        def set_default_url_locale(locale)
+          ActionMailer::Base.default_url_options[:locale] = locale
+        end
+
+        def append_rails_view_path(path)
+          append_view_path Rails.root.join(path)
+        end
 
         def config
           @config ||= Rails.application.config

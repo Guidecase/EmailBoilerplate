@@ -41,4 +41,8 @@ class MailerTest < MiniTest::Unit::TestCase
     assert_match /<h1>test<\/h1>/, delivery.encoded
     assert_match /<body style='margin:0;padding:0'>/, delivery.encoded
   end
+
+  def test_set_default_url_locale
+    assert @mailer.send :set_default_url_locale, 'fr'
+  end
 end

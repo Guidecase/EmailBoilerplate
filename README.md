@@ -33,3 +33,12 @@ This template also exposes an optional pattern for nesting an application's seco
     <% end %>
     <%= render :template => 'boilerplate' %> 
 
+Rails Configuration
+=============    
+
+In order to send emails the mailer template must be configured with a default to and from address. In `application.rb` add the following configuration settings:
+
+    class Application < Rails::Application
+      config.email_from_address = 'sender@example.com'
+      config.email_to_address = 'info@example.com'
+    end

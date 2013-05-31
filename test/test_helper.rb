@@ -13,12 +13,16 @@ class MockMailer < ActionMailer::EmailBoilerplate::Mailer
                  :subject => 'test',
                  :template_name => 'example_email'
   end
+
+  def append_rails_view_path(path)
+    append_view_path path
+  end  
 end
 MockMailer.append_view_path(File.expand_path("../views", __FILE__))
 
 module ActionMailer
   class Base
-    def default_url_options; {}; end
+    def default_url_options; true; end
   end
 end
 ActionMailer::Base.delivery_method = :test
