@@ -18,20 +18,26 @@ Mailer Layout
 
 The boilerplate providers an html email template that will be used as the default layout whenever a mailer inherits from `ActionMailer::EmailBoilerplate`. 
 
-This template also exposes an optional pattern for nesting an application's secondary email layout. To nest a custom layout, (1) set the layout in the mailer class, and (2) wrap the layout's content and `yield` statement in a `content_for` key for `:body`.
+This template also exposes an optional pattern for nesting an application's secondary email layout. To nest a custom layout, (1) set the layout in the mailer class, (2) in the custom layout wrap a yield to the mailer content in a `content_for` block for the key `:body`, (3) wrap the mail's content in a `content_for` block for the custom layout.
 
-**some_mailer.rb  
+**1. some_mailer.rb  
     class SomeMailer < ActionMailer::EmailBoilerplate
       layout 'some/custom/layout'  
     end
 
-**some/custom/layout.html.erb  
+**2. some/custom/layout.html.erb  
     <% content_for :body do %>
-      <h1>title</h1>
-      <p>email body</p>
-      <%= yield %>
+      <div style='background-color:#eee'>
+        <%= yield(:some_mailer_body) %>
+      </div>
     <% end %>
     <%= render :template => 'boilerplate' %> 
+
+**3. views/mailers/some_mailer/some_mail.rb  
+  <% content_for :some_mailer_body do %>
+    <p>Example email body text.</p>
+  <% end %>
+
 
 Rails Configuration
 =============    
