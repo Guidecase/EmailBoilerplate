@@ -6,7 +6,7 @@ module ActionMailer
       end
 
       def mail_table_cell_tag(options={}, &block)
-        content_tag :td, normal_table_cell_options, &block
+        content_tag :td, options.merge(normal_table_cell_options), &block
       end
 
       def mail_image_tag(source, options = {})

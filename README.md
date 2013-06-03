@@ -34,9 +34,9 @@ This template also exposes an optional pattern for nesting an application's seco
     <%= render :template => 'boilerplate' %> 
 
 **3. views/mailers/some_mailer/some_mail.rb  
-  <% content_for :some_mailer_body do %>
-    <p>Example email body text.</p>
-  <% end %>
+    <% content_for :some_mailer_body do %>
+      <p>Example email body text.</p>
+    <% end %>
 
 
 Rails Configuration
