@@ -8,3 +8,7 @@ ActionMailer::Base.append_view_path(File.expand_path("../views", __FILE__))
 require_relative "email_boilerplate/action_mailer/helper"
 require_relative "email_boilerplate/action_mailer/mailer"
 require_relative "email_boilerplate/rails/railtie"
+
+if defined?(Rails)
+  require_relative 'email_boilerplate/rails/engine' 
+end

@@ -31,7 +31,7 @@ This template also exposes an optional pattern for nesting an application's seco
         <%= yield(:some_mailer_body) %>
       </div>
     <% end %>
-    <%= render :template => 'boilerplate' %> 
+    <%= render :template => 'mailers/email_boilerplate/boilerplate' %> 
 
 **3. views/mailers/some_mailer/some_mail.rb  
     <% content_for :some_mailer_body do %>

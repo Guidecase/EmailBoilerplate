@@ -6,7 +6,10 @@ module ActionMailer
       end
 
       def mail_table_cell_tag(options={}, &block)
-        content_tag :td, options.merge(normal_table_cell_options), &block
+        options[:style] << ";#{normal_table_cell_options[:style]}" if options[:style]
+        normal_table_cell_options.merge!(options)
+
+        content_tag :td, options, &block
       end
 
       def mail_image_tag(source, options = {})
@@ -32,7 +35,7 @@ module ActionMailer
         end
 
         def normal_table_cell_options
-          {:style => { 'border-collapse' => 'collapse'} }
+          {:style => 'border-collapse:collapse' }
         end
 
         def normal_image_options

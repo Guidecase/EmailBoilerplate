@@ -3,8 +3,6 @@ module ActionMailer
     class Mailer < ActionMailer::Base
       helper ActionMailer::EmailBoilerplate::Helper
 
-      self.append_view_path File.join(__FILE__, '../../views')
-
       def default_sender(email=nil)
         from = config.email_from_address
         "#{email || from} <#{from}>"
